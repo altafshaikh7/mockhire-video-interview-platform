@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* ── MockHire design system ─────────────────────────────────────
+     Two registers, one system:
+     - brand (landing): drenched deep-indigo dark, display type, motion
+     - product (app):   restrained light, Inter, state-driven motion
+     Colors in OKLCH. */
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Ink scale — neutral with a whisper of indigo (brand hue ~278).
+     THEMEABLE: remapped wholesale under [data-theme="dark"] below. */
+  --color-ink-950: oklch(0.17 0.014 278);
+  --color-ink-900: oklch(0.23 0.014 278);
+  --color-ink-700: oklch(0.38 0.012 278);
+  --color-ink-500: oklch(0.55 0.01 278);
+  --color-ink-400: oklch(0.65 0.008 278);
+  --color-ink-300: oklch(0.75 0.007 278);
+  --color-ink-200: oklch(0.87 0.005 278);
+  --color-ink-100: oklch(0.93 0.004 278);
+  --color-ink-50: oklch(0.972 0.003 278);
+
+  /* Raised product surface (cards, inputs, modals). White in light mode;
+     a lifted night tone in dark. Product register only — brand surfaces
+     keep night-*, which never themes. */
+  --color-surface: oklch(1 0 0);
+
+  /* Accent — electric indigo, the single brand color.
+     -400..-700 are CONSTANT (fills, brand); -50/-100 are tints (themeable). */
+  --color-accent-700: oklch(0.45 0.21 278);
+  --color-accent-600: oklch(0.54 0.23 278);
+  --color-accent-500: oklch(0.62 0.21 278);
+  --color-accent-400: oklch(0.7 0.17 278);
+  --color-accent-100: oklch(0.93 0.05 278);
+  --color-accent-50: oklch(0.965 0.025 278);
+  /* Accent as TEXT on tinted chips/links — themeable (darker than the
+     fill in light mode, lighter in dark) so it always clears AA. */
+  --color-accent-strong: oklch(0.45 0.21 278);
+
+  /* Dark register surfaces (landing + room) — never themed */
+  --color-night-950: oklch(0.145 0.025 278);
+  --color-night-900: oklch(0.18 0.03 278);
+  --color-night-800: oklch(0.23 0.035 278);
+
+  /* Semantic states. Two roles per hue, kept separate on purpose:
+     -500/-600 are FILLS (buttons, badges' dots, room controls) and stay
+     constant across themes; -strong is TEXT-ON-TINT and lightens in
+     dark so chips keep their contrast. -100 is the tint itself. */
+  --color-ok-600: oklch(0.6 0.14 160);
+  --color-ok-400: oklch(0.72 0.15 160);
+  --color-ok-100: oklch(0.94 0.06 160);
+  --color-ok-strong: oklch(0.6 0.14 160);
+  --color-warn-600: oklch(0.66 0.15 70);
+  --color-warn-500: oklch(0.75 0.14 85);
+  --color-warn-100: oklch(0.95 0.06 85);
+  --color-warn-strong: oklch(0.62 0.15 70);
+  --color-bad-600: oklch(0.55 0.2 25);
+  --color-bad-500: oklch(0.62 0.19 25);
+  --color-bad-100: oklch(0.94 0.05 20);
+  --color-bad-strong: oklch(0.55 0.2 25);
+
+  /* Live signal — the "on air" color, deliberately NOT the accent */
+  --color-live-500: oklch(0.72 0.19 145);
+
+  --shadow-card: 0 1px 2px oklch(0.17 0.014 278 / 0.05), 0 4px 16px oklch(0.17 0.014 278 / 0.06);
+  --shadow-pop: 0 2px 6px oklch(0.17 0.014 278 / 0.08), 0 12px 40px oklch(0.17 0.014 278 / 0.14);
+  --shadow-glow: 0 0 60px oklch(0.54 0.23 278 / 0.35);
+
+  /* Motion vocabulary — exponential ease-outs only */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Semantic z-scale */
+  --z-sticky: 20;
+  --z-backdrop: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+}
+
+/* ── Dark theme: the product register at night ─────────────────────────
+   One rule set, two entry points: an explicit user choice via
+   [data-theme] wins; otherwise the OS preference applies (html carries
+   no data-theme in that case). Only product tokens remap — the ink
+   scale inverts (same hue, mirrored lightness), tints deepen, text-on-
+   tint lightens. Brand surfaces (night-*, accent fills) are constant,
+   which is why the landing page and room look identical in both modes. */
+:root[data-theme="dark"] {
+  --color-ink-950: oklch(0.96 0.005 278);
+  --color-ink-900: oklch(0.91 0.006 278);
+  --color-ink-700: oklch(0.8 0.008 278);
+  --color-ink-500: oklch(0.66 0.01 278);
+  --color-ink-400: oklch(0.55 0.01 278);
+  --color-ink-300: oklch(0.42 0.012 278);
+  --color-ink-200: oklch(0.33 0.02 278);
+  --color-ink-100: oklch(0.26 0.022 278);
+  --color-ink-50: oklch(0.165 0.02 278);
+
+  --color-surface: oklch(0.215 0.024 278);
+
+  --color-accent-50: oklch(0.26 0.06 278);
+  --color-accent-100: oklch(0.32 0.09 278);
+  --color-accent-strong: oklch(0.78 0.13 278);
+
+  --color-ok-100: oklch(0.3 0.06 160);
+  --color-ok-strong: oklch(0.78 0.14 160);
+  --color-warn-100: oklch(0.3 0.06 80);
+  --color-warn-strong: oklch(0.8 0.13 80);
+  --color-bad-100: oklch(0.29 0.07 20);
+  --color-bad-strong: oklch(0.78 0.13 20);
+
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.3), 0 4px 16px oklch(0 0 0 / 0.35);
+  --shadow-pop: 0 2px 6px oklch(0 0 0 / 0.4), 0 12px 40px oklch(0 0 0 / 0.55);
+
+  color-scheme: dark;
+}
+
+/* No explicit choice stored → follow the OS. Same values as above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-ink-950: oklch(0.96 0.005 278);
+    --color-ink-900: oklch(0.91 0.006 278);
+    --color-ink-700: oklch(0.8 0.008 278);
+    --color-ink-500: oklch(0.66 0.01 278);
+    --color-ink-400: oklch(0.55 0.01 278);
+    --color-ink-300: oklch(0.42 0.012 278);
+    --color-ink-200: oklch(0.33 0.02 278);
+    --color-ink-100: oklch(0.26 0.022 278);
+    --color-ink-50: oklch(0.165 0.02 278);
+
+    --color-surface: oklch(0.215 0.024 278);
+
+    --color-accent-50: oklch(0.26 0.06 278);
+    --color-accent-100: oklch(0.32 0.09 278);
+    --color-accent-strong: oklch(0.78 0.13 278);
+
+    --color-ok-100: oklch(0.3 0.06 160);
+    --color-ok-strong: oklch(0.78 0.14 160);
+    --color-warn-100: oklch(0.3 0.06 80);
+    --color-warn-strong: oklch(0.8 0.13 80);
+    --color-bad-100: oklch(0.29 0.07 20);
+    --color-bad-strong: oklch(0.78 0.13 20);
+
+    --shadow-card: 0 1px 2px oklch(0 0 0 / 0.3), 0 4px 16px oklch(0 0 0 / 0.35);
+    --shadow-pop: 0 2px 6px oklch(0 0 0 / 0.4), 0 12px 40px oklch(0 0 0 / 0.55);
+
+    color-scheme: dark;
+  }
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  color: var(--color-ink-900);
+  background: var(--color-ink-50);
+}
+
+::selection {
+  background: var(--color-accent-100);
+}
+
+/* In @layer base so Tailwind's focus utilities (focus:outline-none,
+   focus-visible:outline-*) can override it — an unlayered rule would beat
+   every layered utility and force one ring on everything. Elements that
+   opt out (the code pad) or ask for a different ring now win as intended. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent-600);
+    outline-offset: 2px;
+  }
+}
+
+/* Display type is balanced; long prose avoids orphans */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Skeleton shimmer for product loading states */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--color-ink-100) 25%,
+    var(--color-ink-50) 50%,
+    var(--color-ink-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Landing grain — one layer of texture over the drench */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
