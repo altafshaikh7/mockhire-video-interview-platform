@@ -27,7 +27,7 @@ function ControlButton({ label, shortcut, active, danger, disabled, onClick, chi
           disabled
             ? "cursor-not-allowed bg-white/5 text-white/30"
             : danger
-              ? "bg-bad-600 text-white hover:bg-bad-500"
+              ? "bg-bad-600 text-white hover:bg-bad-500 hover:text-ink-950"
               : active
                 ? "bg-white text-night-950 hover:bg-white/90"
                 : "bg-white/10 text-white hover:bg-white/20",
@@ -167,7 +167,7 @@ export default function ControlBar({
           <Icon name="chat" />
         </ControlButton>
         {unread > 0 && panel !== "chat" && (
-          <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-accent-500 px-1 text-[10px] font-semibold text-white">
+          <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-accent-500 px-1 text-[10px] font-semibold text-ink-950">
             {unread > 9 ? "9+" : unread}
           </span>
         )}
@@ -182,7 +182,7 @@ export default function ControlBar({
         <button
           type="button"
           onClick={leave}
-          className="rounded-full bg-bad-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-bad-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bad-500"
+          className="rounded-full bg-bad-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-bad-500 hover:text-ink-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bad-500"
         >
           Confirm leave
         </button>

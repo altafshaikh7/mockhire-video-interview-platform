@@ -9,7 +9,7 @@ import { effectiveTheme, toggleTheme } from "../lib/theme";
 export function Logo({ dark = false }) {
   return (
     <Link to="/" className="flex items-center gap-2 select-none">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent-600 shadow-[0_2px_8px_oklch(0.54_0.23_278/0.35)]">
+      <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent-600 shadow-[0_2px_8px_rgba(117,112,140,0.35)]">
         <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 fill-white" aria-hidden>
           <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h7A2.5 2.5 0 0 1 15 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 3 16.5v-9Z" />
           <path d="M16.5 10.1l3.2-2.2a.8.8 0 0 1 1.3.66v6.88a.8.8 0 0 1-1.3.66l-3.2-2.2v-3.8Z" opacity=".55" />
@@ -30,11 +30,11 @@ export const Button = forwardRef(function Button(
 ) {
   const styles = {
     primary:
-      "bg-gradient-to-br from-accent-500 to-accent-700 text-white shadow-sm shadow-accent-700/20 hover:shadow-md active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:shadow-none disabled:active:scale-100",
+      "bg-accent-600 text-white shadow-sm shadow-accent-700/20 hover:bg-accent-500 hover:text-ink-950 hover:shadow-md active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:shadow-none disabled:active:scale-100",
     secondary:
       "bg-surface text-ink-900 shadow-sm ring-1 ring-ink-200 hover:bg-ink-100 hover:shadow-md active:scale-[0.98] disabled:text-ink-400",
     danger:
-      "bg-bad-600 text-white shadow-sm hover:brightness-110 active:scale-[0.98] disabled:bg-ink-200",
+      "bg-bad-600 text-white shadow-sm hover:bg-bad-500 hover:text-ink-950 active:scale-[0.98] disabled:bg-ink-200",
     ghost: "text-ink-700 hover:bg-ink-100 disabled:text-ink-400",
     /* dark-register variants (landing, room) */
     light:

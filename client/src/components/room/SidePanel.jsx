@@ -88,7 +88,7 @@ export default function SidePanel({
     <aside
       data-sidepanel
       aria-label={panel === "chat" ? "Chat" : "Code pad"}
-      className="relative flex h-full w-full flex-col overflow-hidden border-l border-white/60 bg-[var(--neu-bg)] text-[var(--neu-text)] shadow-[-6px_0_18px_rgba(100,116,139,0.08)]"
+      className="relative flex h-full w-full flex-col overflow-hidden border-l border-white/60 bg-[var(--neu-bg)] text-[var(--neu-text)] shadow-[-6px_0_18px_rgba(117,112,140,0.08)]"
     >
       <header className="flex items-center justify-between gap-2 border-b border-[var(--neu-shadow)]/50 px-3 py-3 sm:px-4">
         <div className="flex min-w-0 items-center gap-3">
@@ -240,7 +240,7 @@ function Chat({ messages, selfId, onSend }) {
                   className={[
                     "inline-block whitespace-pre-wrap break-words rounded-2xl px-3.5 py-2.5 text-left text-sm leading-relaxed",
                     mine
-                      ? "rounded-br-md bg-[var(--neu-accent)] text-white shadow-[3px_4px_8px_rgba(66,99,235,0.22)]"
+                      ? "rounded-br-md bg-[var(--neu-accent)] text-white shadow-[3px_4px_8px_rgba(117,112,140,0.22)]"
                       : "rounded-bl-md border border-white/70 bg-[var(--neu-bg)] text-[var(--neu-text)] shadow-[4px_4px_9px_var(--neu-shadow),-4px_-4px_9px_var(--neu-light)]",
                   ].join(" ")}
                 >

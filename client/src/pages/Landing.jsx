@@ -72,7 +72,7 @@ export default function Landing() {
   );
 
   return (
-    <div ref={scope} className="relative min-h-screen overflow-x-clip bg-night-950 text-white">
+    <div ref={scope} className="relative min-h-screen overflow-x-clip bg-[linear-gradient(135deg,#c7dbf7,#bfc7de_58%,#c59594)] text-ink-950">
       {/* ambient brand glow behind the hero */}
       <div
         aria-hidden
@@ -81,13 +81,13 @@ export default function Landing() {
       <div className="grain absolute inset-0" aria-hidden />
 
       <header className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Logo dark />
+        <Logo />
         <nav className="flex items-center gap-2">
           <Link to="/login">
-            <Button variant="ghost-dark">Sign in</Button>
+            <Button variant="ghost">Sign in</Button>
           </Link>
           <Link to="/register">
-            <Button variant="light">Get started</Button>
+            <Button>Get started</Button>
           </Link>
         </nav>
       </header>
@@ -103,12 +103,12 @@ export default function Landing() {
           <span className="block overflow-hidden pb-1">
             <span data-word className="inline-block">run</span>{" "}
             <span data-word className="inline-block">like</span>{" "}
-            <span data-word className="inline-block text-accent-400">clockwork.</span>
+            <span data-word className="inline-block text-accent-500">clockwork.</span>
           </span>
         </h1>
 
         <div className="mt-8 flex max-w-xl flex-col gap-8">
-          <p data-hero-sub className="text-lg leading-relaxed text-white/70">
+          <p data-hero-sub className="text-lg leading-relaxed text-ink-700">
             MockHire puts video, chat, and a live code editor in one
             identity-gated room. Schedule in seconds. Interview without
             friction. Decide with structure.
@@ -136,16 +136,16 @@ export default function Landing() {
           />
           <div
             data-panel
-            className="relative overflow-hidden rounded-2xl border border-white/10 bg-night-900/80 shadow-[var(--shadow-pop)] backdrop-blur"
+            className="relative overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[var(--shadow-pop)] backdrop-blur"
           >
             {/* window chrome */}
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
+            <div className="flex items-center justify-between border-b border-ink-200/80 px-5 py-3.5">
               <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
               </div>
-              <span className="flex items-center gap-2 text-xs font-medium text-white/60">
+              <span className="flex items-center gap-2 text-xs font-medium text-ink-700">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute h-full w-full animate-ping rounded-full bg-live-500/60" />
                   <span className="relative h-2 w-2 rounded-full bg-live-500" />
@@ -155,7 +155,7 @@ export default function Landing() {
               <span className="w-14" aria-hidden />
             </div>
 
-            <div className="grid gap-px bg-white/5 sm:grid-cols-[1.1fr_1fr]">
+            <div className="grid gap-px bg-ink-200 sm:grid-cols-[1.1fr_1fr]">
               {/* left: video tiles */}
               <div className="grid grid-rows-2 gap-px">
                 {[
@@ -202,7 +202,7 @@ export default function Landing() {
         <h2 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">
           Why MockHire
         </h2>
-        <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
+        <div className="mt-10 divide-y divide-ink-200 border-y border-ink-200">
           {FEATURES.map((f) => (
             <div
               key={f.title}
@@ -212,7 +212,7 @@ export default function Landing() {
               <h3 className="font-display text-2xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-accent-400">
                 {f.title}
               </h3>
-              <p className="max-w-prose leading-relaxed text-white/70">{f.body}</p>
+              <p className="max-w-prose leading-relaxed text-ink-700">{f.body}</p>
             </div>
           ))}
         </div>
@@ -224,16 +224,16 @@ export default function Landing() {
           Your next great hire is one room away.
         </h2>
         <Link to="/register" className="mt-8 inline-block">
-          <Button ref={closingCtaRef} variant="light" className="px-7 py-3.5 text-base">
+          <Button ref={closingCtaRef} className="px-7 py-3.5 text-base">
             Create your account
           </Button>
         </Link>
       </section>
 
-      <footer className="relative border-t border-white/10 py-8">
+      <footer className="relative border-t border-white/10 bg-night-950 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 text-sm text-white/60 sm:flex-row">
           <Logo dark />
-          <p>Built by Anuj Malviya · MERN + WebRTC</p>
+          <p>Built by Altaf Shaikh · MERN Stack + WebRTC</p>
         </div>
       </footer>
     </div>

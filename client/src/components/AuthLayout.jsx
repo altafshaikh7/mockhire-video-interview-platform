@@ -40,7 +40,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
       {/* Brand panel */}
       <aside
         ref={scope}
-        className="relative hidden overflow-hidden bg-night-950 text-white lg:flex lg:flex-col lg:justify-between lg:p-10"
+        className="relative hidden overflow-hidden bg-[linear-gradient(145deg,#c7dbf7,#bfc7de_62%,#c59594)] text-ink-950 lg:flex lg:flex-col lg:justify-between lg:p-10"
       >
         <div
           aria-hidden
@@ -53,16 +53,16 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
         <div className="grain absolute inset-0" aria-hidden />
 
         <div className="relative" data-stage>
-          <Logo dark />
+          <Logo />
         </div>
 
         {/* Middle: compact call vignette + the principle it illustrates */}
         <div className="relative max-w-md">
           <div
             data-stage
-            className="overflow-hidden rounded-2xl border border-white/10 bg-night-900/80 shadow-[var(--shadow-pop)] backdrop-blur"
+            className="overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[var(--shadow-pop)] backdrop-blur"
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-xs text-white/60">
+            <div className="flex items-center justify-between border-b border-ink-200/80 px-4 py-2.5 text-xs text-ink-700">
               <span className="flex items-center gap-2 font-medium">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute h-full w-full animate-ping rounded-full bg-live-500/60" />
@@ -72,7 +72,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
               </span>
               <span className="tabular-nums">{CALL.clock}</span>
             </div>
-            <div className="grid grid-cols-2 gap-px bg-white/5">
+            <div className="grid grid-cols-2 gap-px bg-ink-200">
               {CALL.seats.map((seat) => (
                 <div key={seat} className="relative flex aspect-[16/11] flex-col items-center justify-center gap-2 bg-night-950">
                   <span className="grid h-11 w-11 place-items-center rounded-full bg-accent-600/25 ring-1 ring-accent-400/30" aria-hidden>
@@ -85,7 +85,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
                 </div>
               ))}
             </div>
-            <p className="border-t border-white/10 px-4 py-2.5 text-xs text-white/60">
+            <p className="border-t border-ink-200/80 px-4 py-2.5 text-xs text-ink-700">
               Room locked to these two identities. A shared link gets nobody in.
             </p>
           </div>
@@ -95,13 +95,13 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
               "The room is gated by identity, not by a link. That's the way it
               should have always worked."
             </p>
-            <footer className="mt-3 text-sm text-white/60">
+            <footer className="mt-3 text-sm text-ink-700">
               The design principle behind MockHire
             </footer>
           </blockquote>
         </div>
 
-        <p className="relative text-xs text-white/50" data-stage>
+        <p className="relative text-xs text-ink-700" data-stage>
           Peer-to-peer encrypted video · No recordings, by design
         </p>
       </aside>

@@ -1241,7 +1241,7 @@ function Lobby({
 
           {mediaDenied ? (
 
-            <p className="max-w-md text-sm text-amber-700">
+            <p className="max-w-md text-sm text-warn-strong">
 
               Camera and microphone are blocked. Allow them in your browser's
 
@@ -1323,7 +1323,7 @@ function Lobby({
 
           </Button>
 
-          {joinError && <p className="text-sm text-red-600" role="alert">{joinError}</p>}
+          {joinError && <p className="text-sm text-bad-600" role="alert">{joinError}</p>}
 
           <p className="max-w-md text-sm text-[var(--neu-muted)]">
 
@@ -1367,7 +1367,7 @@ function PreToggle({ on, onClick, labelOn, labelOff }) {
 
           ? "bg-white/10 text-[var(--neu-text)] hover:bg-white/15"
 
-          : "bg-red-50 text-red-600 ring-1 ring-red-200",
+          : "bg-bad-100 text-bad-strong ring-1 ring-bad-600/20",
 
       ].join(" ")}
 
@@ -1633,7 +1633,7 @@ function LiveStage({
 
               role="alert"
 
-              className="absolute left-1/2 top-6 z-10 -translate-x-1/2 rounded-full bg-amber-100 px-4 py-1.5 text-sm font-medium text-[var(--neu-text)] ring-1 ring-amber-300"
+              className="absolute left-1/2 top-6 z-10 -translate-x-1/2 rounded-full bg-warn-100 px-4 py-1.5 text-sm font-medium text-[var(--neu-text)] ring-1 ring-warn-600/30"
 
             >
 
@@ -1653,7 +1653,7 @@ function LiveStage({
 
               <div className="text-center">
 
-                <p className="font-display text-lg font-semibold text-amber-700">
+                <p className="font-display text-lg font-semibold text-warn-strong">
 
                   Relayed connection capacity reached
 
