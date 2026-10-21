@@ -3,12 +3,20 @@ const LOCAL_ORIGINS = [
   "http://127.0.0.1:5173",
 ];
 
+const PRODUCTION_ORIGINS = [
+  "https://mockhire-video-interview-platform.vercel.app",
+];
+
 const VERCEL_PREVIEW_ORIGIN =
   /^https:\/\/mockhire-video-interview-platform-(?:[a-z0-9]+|git-[a-z0-9-]+)-altaf-shaikh2\.vercel\.app$/;
 
 export function getAllowedOrigins() {
   const configuredOrigin = process.env.CLIENT_ORIGIN?.trim();
-  return [...new Set([...LOCAL_ORIGINS, configuredOrigin].filter(Boolean))];
+  return [
+    ...new Set(
+      [...LOCAL_ORIGINS, ...PRODUCTION_ORIGINS, configuredOrigin].filter(Boolean)
+    ),
+  ];
 }
 
 export function isAllowedOrigin(origin) {

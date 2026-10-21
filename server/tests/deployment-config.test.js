@@ -56,6 +56,17 @@ describe("separate frontend/backend deployment", () => {
     assert.equal(isAllowedOrigin("https://attacker.example"), false);
   });
 
+  it("always allows the canonical frontend even if CLIENT_ORIGIN is unset", () => {
+    const configuredOrigin = process.env.CLIENT_ORIGIN;
+    delete process.env.CLIENT_ORIGIN;
+    try {
+      assert.equal(isAllowedOrigin(productionOrigin), true);
+    } finally {
+      if (configuredOrigin === undefined) delete process.env.CLIENT_ORIGIN;
+      else process.env.CLIENT_ORIGIN = configuredOrigin;
+    }
+  });
+
   it("returns credentialed CORS headers for production preflight", async () => {
     const response = await fetch(`${baseUrl}/api/auth/login`, {
       method: "OPTIONS",

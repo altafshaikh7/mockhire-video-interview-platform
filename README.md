@@ -332,9 +332,9 @@ NODE_ENV=production
 
 Keep `MONGO_URI`, `JWT_SECRET`, `PORT`, and any TURN provider credentials in
 Render's environment settings. Do not add them to Vercel. The backend accepts
-the configured frontend origin, this project's Vercel preview URLs, and the
-explicit localhost origins used for development; it does not allow arbitrary
-origins.
+the canonical MockHire Vercel origin, the configured frontend origin, this
+project's Vercel preview URLs, and the explicit localhost origins used for
+development; it does not allow arbitrary origins.
 
 Because the Vercel and Render hostnames are different sites, production auth
 cookies use `SameSite=None; Secure; HttpOnly` and browser requests include
