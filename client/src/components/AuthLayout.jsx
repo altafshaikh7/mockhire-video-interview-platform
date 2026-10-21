@@ -107,7 +107,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
       </aside>
 
       {/* Form panel */}
-      <main className="flex flex-col bg-ink-50 px-6 py-6 lg:px-16">
+      <main className="app-canvas flex flex-col px-6 py-6 lg:px-16">
         <header className="flex items-center justify-between gap-3 lg:justify-end">
           <span className="lg:hidden"><Logo /></span>
           <ThemeToggle />
@@ -121,9 +121,11 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
           )}
         </header>
         <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-10">
-          <h1 className="font-display text-3xl font-bold tracking-tight text-ink-950">{title}</h1>
-          <p className="mt-2 text-sm text-ink-500">{subtitle}</p>
-          <div className="mt-8">{children}</div>
+          <div className="rounded-3xl border border-ink-100/80 bg-surface/85 p-6 shadow-[var(--shadow-card)] backdrop-blur-sm sm:p-9">
+            <h1 className="font-display text-3xl font-bold tracking-tight text-ink-950">{title}</h1>
+            <p className="mt-2 text-sm leading-relaxed text-ink-500">{subtitle}</p>
+            <div className="mt-8">{children}</div>
+          </div>
         </div>
       </main>
     </div>

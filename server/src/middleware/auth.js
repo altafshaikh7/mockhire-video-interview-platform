@@ -17,10 +17,11 @@ export function signToken(user) {
 }
 
 export function cookieOptions() {
+  const isProduction = process.env.NODE_ENV === "production";
   return {
     httpOnly: true, // not readable by JS — blocks token theft via XSS
-    sameSite: "lax", // CSRF mitigation
-    secure: process.env.NODE_ENV === "production", // HTTPS-only in prod
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction, // SameSite=None requires HTTPS
     maxAge: 24 * 60 * 60 * 1000,
   };
 }

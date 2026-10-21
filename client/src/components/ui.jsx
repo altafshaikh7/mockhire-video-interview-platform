@@ -30,11 +30,11 @@ export const Button = forwardRef(function Button(
 ) {
   const styles = {
     primary:
-      "bg-accent-600 text-white hover:bg-accent-700 active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:active:scale-100",
+      "bg-gradient-to-br from-accent-500 to-accent-700 text-white shadow-sm shadow-accent-700/20 hover:shadow-md active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:shadow-none disabled:active:scale-100",
     secondary:
-      "bg-surface text-ink-900 ring-1 ring-ink-200 hover:bg-ink-100 active:scale-[0.98] disabled:text-ink-400",
+      "bg-surface text-ink-900 shadow-sm ring-1 ring-ink-200 hover:bg-ink-100 hover:shadow-md active:scale-[0.98] disabled:text-ink-400",
     danger:
-      "bg-bad-600 text-white hover:brightness-110 active:scale-[0.98] disabled:bg-ink-200",
+      "bg-bad-600 text-white shadow-sm hover:brightness-110 active:scale-[0.98] disabled:bg-ink-200",
     ghost: "text-ink-700 hover:bg-ink-100 disabled:text-ink-400",
     /* dark-register variants (landing, room) */
     light:
@@ -44,7 +44,7 @@ export const Button = forwardRef(function Button(
   return (
     <button
       ref={ref}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-[background-color,color,transform,filter] duration-150 ease-[var(--ease-out-quart)] disabled:cursor-not-allowed ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-[background-color,color,transform,filter,box-shadow] duration-200 ease-[var(--ease-out-quart)] disabled:cursor-not-allowed ${styles[variant]} ${className}`}
       {...props}
     />
   );
@@ -53,7 +53,7 @@ export const Button = forwardRef(function Button(
 export function Field({ label, error, children }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-medium text-ink-700">{label}</span>
+      <span className="mb-2 block text-sm font-semibold text-ink-700">{label}</span>
       {children}
       {error ? <span className="mt-1 block text-sm text-bad-600">{error}</span> : null}
     </label>
@@ -63,7 +63,7 @@ export function Field({ label, error, children }) {
 export function Input({ className = "", ...props }) {
   return (
     <input
-      className={`w-full rounded-lg border-0 bg-surface px-3.5 py-2.5 text-sm text-ink-900 shadow-sm ring-1 ring-ink-200 transition-shadow duration-150 placeholder:text-ink-500 hover:ring-ink-300 focus:ring-2 focus:ring-accent-600 disabled:bg-ink-100 disabled:text-ink-400 ${className}`}
+      className={`w-full rounded-xl border-0 bg-surface px-4 py-3 text-sm text-ink-900 shadow-sm ring-1 ring-ink-200/80 transition-[box-shadow,ring-color] duration-200 placeholder:text-ink-500 hover:ring-ink-300 focus:ring-2 focus:ring-accent-600 disabled:bg-ink-100 disabled:text-ink-400 ${className}`}
       {...props}
     />
   );
@@ -72,7 +72,7 @@ export function Input({ className = "", ...props }) {
 export function Textarea({ className = "", ...props }) {
   return (
     <textarea
-      className={`w-full resize-none rounded-lg border-0 bg-surface px-3.5 py-2.5 text-sm text-ink-900 shadow-sm ring-1 ring-ink-200 transition-shadow duration-150 placeholder:text-ink-500 hover:ring-ink-300 focus:ring-2 focus:ring-accent-600 ${className}`}
+      className={`w-full resize-none rounded-xl border-0 bg-surface px-4 py-3 text-sm text-ink-900 shadow-sm ring-1 ring-ink-200/80 transition-[box-shadow,ring-color] duration-200 placeholder:text-ink-500 hover:ring-ink-300 focus:ring-2 focus:ring-accent-600 ${className}`}
       {...props}
     />
   );
@@ -129,7 +129,7 @@ export function StatusBadge({ status }) {
   };
   return (
     <span
-      className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${map[status] ?? "bg-ink-100 text-ink-500"}`}
+      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold capitalize ring-1 ring-inset ring-current/10 ${map[status] ?? "bg-ink-100 text-ink-500"}`}
     >
       {status}
     </span>

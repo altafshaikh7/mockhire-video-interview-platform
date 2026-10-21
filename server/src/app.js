@@ -14,14 +14,14 @@ import authRoutes from "./routes/auth.js";
 import interviewRoutes from "./routes/interviews.js";
 import webrtcRoutes from "./routes/webrtc.js";
 import { isDbReady } from "./config/db.js";
+import { isAllowedOrigin } from "./config/origins.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
 const isProd = process.env.NODE_ENV === "production";
 
-// In production this one Express server also serves the built client —
-// same origin as the API, so the SameSite=Lax auth cookie works with zero
-// CORS friction (a split static host would silently break cookie auth).
+// In production this server may also serve the client. Separate deployments
+// use the configured exact client origin and credentialed CORS below.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const clientDist = path.resolve(__dirname, "../../client/dist");
 const clientIndexHtml = path.join(clientDist, "index.html");
@@ -74,10 +74,22 @@ app.use(
 
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+    origin(origin, callback) {
+      callback(null, Boolean(origin) && isAllowedOrigin(origin));
+    },
     credentials: true, // allow the httpOnly auth cookie
   })
 );
+
+// SameSite=None is required for separate Vercel/Render sites. Keep unsafe
+// browser requests bound to the same explicit origin allowlist as CORS.
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  if (!["GET", "HEAD", "OPTIONS"].includes(req.method) && origin && !isAllowedOrigin(origin)) {
+    return res.status(403).json({ message: "Origin not allowed" });
+  }
+  next();
+});
 
 // General API rate limit — blunt-force abuse protection
 app.use(

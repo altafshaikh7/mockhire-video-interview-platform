@@ -89,8 +89,8 @@ export default function Dashboard() {
   const isInterviewer = user?.role === "interviewer";
 
   return (
-    <div className="min-h-screen bg-[var(--neu-bg)] text-[var(--neu-text)]">
-      <header className="border-b border-ink-200/70 bg-surface">
+    <div className="app-canvas min-h-screen text-[var(--neu-text)]">
+      <header className="sticky top-0 z-[var(--z-sticky)] border-b border-ink-200/70 bg-surface/85 shadow-sm backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
           <Logo />
           <div className="flex items-center gap-2">

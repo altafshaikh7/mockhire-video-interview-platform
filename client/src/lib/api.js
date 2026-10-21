@@ -2,6 +2,8 @@
 // - credentials: "include" so the httpOnly auth cookie always rides along
 // - normalizes errors into ApiError with the server's message
 // - no token handling anywhere in JS: the cookie is invisible by design
+import { apiUrl } from "./config.js";
+
 export class ApiError extends Error {
   constructor(status, message) {
     super(message);
@@ -33,7 +35,7 @@ async function once(path, { method = "GET", body, reqId } = {}) {
   const t0 = performance.now();
   console.log(`[${new Date().toISOString()}] [${reqId}] [api] [once] FETCH_STARTED`, { method, path, perfNow: t0 });
   try {
-    res = await fetch(`/api${path}`, {
+    res = await fetch(apiUrl(`/api${path}`), {
       method,
       credentials: "include",
       headers: {

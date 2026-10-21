@@ -41,7 +41,7 @@ export default function Modal({ title, onClose, children }) {
     >
       <div
         ref={panelRef}
-        className="w-full max-w-md rounded-2xl bg-surface p-6 shadow-[var(--shadow-pop)]"
+        className="w-full max-w-md rounded-3xl border border-ink-100/70 bg-surface p-6 shadow-[var(--shadow-pop)] sm:p-7"
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">

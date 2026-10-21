@@ -64,8 +64,8 @@
   /* Live signal — the "on air" color, deliberately NOT the accent */
   --color-live-500: oklch(0.72 0.19 145);
 
-  --shadow-card: 0 1px 2px oklch(0.17 0.014 278 / 0.05), 0 4px 16px oklch(0.17 0.014 278 / 0.06);
-  --shadow-pop: 0 2px 6px oklch(0.17 0.014 278 / 0.08), 0 12px 40px oklch(0.17 0.014 278 / 0.14);
+  --shadow-card: 0 1px 2px oklch(0.17 0.014 278 / 0.04), 0 8px 28px oklch(0.17 0.014 278 / 0.07);
+  --shadow-pop: 0 4px 12px oklch(0.17 0.014 278 / 0.08), 0 24px 64px oklch(0.17 0.014 278 / 0.16);
   --shadow-glow: 0 0 60px oklch(0.54 0.23 278 / 0.35);
 
   /* Motion vocabulary — exponential ease-outs only */
@@ -77,6 +77,15 @@
   --z-backdrop: 40;
   --z-modal: 50;
   --z-toast: 60;
+}
+
+:root {
+  --neu-bg: var(--color-ink-50);
+  --neu-text: var(--color-ink-900);
+  --neu-muted: var(--color-ink-500);
+  --neu-shadow: var(--color-ink-200);
+  --neu-light: var(--color-surface);
+  --neu-accent: var(--color-accent-600);
 }
 
 /* ── Dark theme: the product register at night ─────────────────────────
@@ -154,6 +163,37 @@ html {
   -webkit-font-smoothing: antialiased;
   color: var(--color-ink-900);
   background: var(--color-ink-50);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-ink-50);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-canvas {
+  background-color: var(--color-ink-50);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, color-mix(in oklch, var(--color-accent-100) 36%, transparent), transparent 44rem),
+    linear-gradient(180deg, var(--color-ink-50), var(--color-ink-50));
+}
+
+[data-controlbar] {
+  max-width: calc(100vw - 1.5rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+[data-controlbar]::-webkit-scrollbar {
+  display: none;
+}
+
+[data-controlbar] > * {
+  flex-shrink: 0;
 }
 
 ::selection {

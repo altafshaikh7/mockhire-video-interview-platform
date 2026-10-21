@@ -4,12 +4,13 @@
 // handshake automatically (same-origin via the Vite proxy in dev), so
 // there is no token handling here at all.
 import { io } from "socket.io-client";
+import { API_BASE_URL } from "./config.js";
 
 let socket = null;
 
 export function connectSocket() {
   if (socket) return socket;
-  socket = io("/", {
+  socket = io(API_BASE_URL || "/", {
     withCredentials: true,
     // Fail fast instead of retrying forever against a dead server —
     // the room UI shows an honest "couldn't connect" state instead.

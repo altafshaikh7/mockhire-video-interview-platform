@@ -309,7 +309,40 @@ The frontend should be available at `http://localhost:5173`.
 
 ## 🚢 Deployment
 
-The application supports a production setup in which the frontend is built and served by the backend, provided the production server configuration is enabled.
+The frontend and backend can be deployed separately. Configure these exact
+environment variables in the hosting dashboards (do not put backend secrets
+in Vercel):
+
+**Vercel frontend**
+
+```env
+VITE_API_URL=https://mock-hire.onrender.com
+```
+
+Set this for the Production environment and rebuild/redeploy the frontend
+after changing it. Local development leaves `VITE_API_URL` unset and continues
+to use the Vite proxy.
+
+**Render backend**
+
+```env
+CLIENT_ORIGIN=https://mockhire-video-interview-platform.vercel.app
+NODE_ENV=production
+```
+
+Keep `MONGO_URI`, `JWT_SECRET`, `PORT`, and any TURN provider credentials in
+Render's environment settings. Do not add them to Vercel. The backend accepts
+the configured frontend origin and the explicit localhost origins used for
+development; it does not allow arbitrary origins.
+
+Because the Vercel and Render hostnames are different sites, production auth
+cookies use `SameSite=None; Secure; HttpOnly` and browser requests include
+credentials. Some browsers or privacy settings block third-party cookies
+regardless of these attributes. If session cookies are blocked, use custom
+domains on the same registrable domain (for example, `app.example.com` and
+`api.example.com`) or test in a browser configuration that permits them.
+
+The application also supports serving the built frontend from the backend.
 
 Build the frontend:
 
@@ -360,4 +393,3 @@ Potential improvements for future versions include:
 ---
 
 If you find MockHire useful, consider giving the repository a star!
-

@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
 import { verifyTokenFromCookieHeader } from "../middleware/auth.js";
 import Interview from "../models/Interview.js";
+import { isAllowedOrigin } from "../config/origins.js";
 
 // ── In-call constraints ─────────────────────────────────────────────
 const MAX_CHAT_LENGTH = 1000;
@@ -63,8 +64,13 @@ export function getActiveRoomCodes() {
 export function attachSocket(httpServer) {
   const io = new Server(httpServer, {
     cors: {
-      origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+      origin(origin, callback) {
+        callback(null, Boolean(origin) && isAllowedOrigin(origin));
+      },
       credentials: true, // the auth cookie rides the handshake
+    },
+    allowRequest(req, callback) {
+      callback(null, isAllowedOrigin(req.headers.origin));
     },
     maxHttpBufferSize: 100_000, // hard cap on any single packet (~100 kb)
   });

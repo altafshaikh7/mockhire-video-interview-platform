@@ -14,7 +14,7 @@ const InterviewRoom = lazy(() => import("./pages/InterviewRoom"));
 function AuthLoading() {
   return (
     <main
-      className="grid min-h-screen place-items-center bg-[var(--neu-bg)] px-6"
+      className="app-canvas grid min-h-screen place-items-center px-6"
       role="status"
       aria-live="polite"
     >
@@ -49,7 +49,7 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Suspense
           fallback={
-            <div className="grid min-h-screen place-items-center bg-[var(--neu-bg)]">
+            <div className="app-canvas grid min-h-screen place-items-center">
               <Spinner />
             </div>
           }
