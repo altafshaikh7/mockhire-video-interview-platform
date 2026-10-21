@@ -36,7 +36,23 @@ describe("separate frontend/backend deployment", () => {
       productionOrigin,
     ]);
     assert.equal(isAllowedOrigin(productionOrigin), true);
+    assert.equal(
+      isAllowedOrigin(
+        "https://mockhire-video-interview-platform-3f84pfhlg-altaf-shaikh2.vercel.app"
+      ),
+      true
+    );
+    assert.equal(
+      isAllowedOrigin(
+        "https://mockhire-video-interview-platform-git-fix-login-altaf-shaikh2.vercel.app"
+      ),
+      true
+    );
     assert.equal(isAllowedOrigin("http://localhost:5173"), true);
+    assert.equal(
+      isAllowedOrigin("https://mockhire-video-interview-platform-evil.vercel.app"),
+      false
+    );
     assert.equal(isAllowedOrigin("https://attacker.example"), false);
   });
 
@@ -54,6 +70,23 @@ describe("separate frontend/backend deployment", () => {
     assert.equal(response.headers.get("access-control-allow-origin"), productionOrigin);
     assert.equal(response.headers.get("access-control-allow-credentials"), "true");
     assert.match(response.headers.get("access-control-allow-headers"), /content-type/i);
+  });
+
+  it("returns credentialed CORS headers for this project's Vercel preview URLs", async () => {
+    const previewOrigin =
+      "https://mockhire-video-interview-platform-3f84pfhlg-altaf-shaikh2.vercel.app";
+    const response = await fetch(`${baseUrl}/api/auth/login`, {
+      method: "OPTIONS",
+      headers: {
+        Origin: previewOrigin,
+        "Access-Control-Request-Method": "POST",
+        "Access-Control-Request-Headers": "content-type,x-debug-request-id",
+      },
+    });
+
+    assert.equal(response.status, 204);
+    assert.equal(response.headers.get("access-control-allow-origin"), previewOrigin);
+    assert.equal(response.headers.get("access-control-allow-credentials"), "true");
   });
 
   it("rejects state-changing requests from untrusted origins", async () => {
@@ -93,6 +126,12 @@ describe("separate frontend/backend deployment", () => {
 
     try {
       assert.equal(await connectError(productionOrigin), "unauthorized");
+      assert.equal(
+        await connectError(
+          "https://mockhire-video-interview-platform-3f84pfhlg-altaf-shaikh2.vercel.app"
+        ),
+        "unauthorized"
+      );
       assert.notEqual(await connectError("https://attacker.example"), "unauthorized");
     } finally {
       await new Promise((resolve) => io.close(resolve));
