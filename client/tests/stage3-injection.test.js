@@ -21,8 +21,10 @@ global.MediaStream = class MediaStream {
 let lastFetchUrl = null;
 let lastFetchOpts = null;
 let mockFetchResponse = null;
+let fetchCallCount = 0;
 
 global.fetch = async (url, opts) => {
+  fetchCallCount += 1;
   lastFetchUrl = url;
   lastFetchOpts = opts;
   if (mockFetchResponse instanceof Error) throw mockFetchResponse;
@@ -41,6 +43,7 @@ describe("Stage 3: Dynamic ICE Configuration Injection", () => {
     lastFetchUrl = null;
     lastFetchOpts = null;
     mockFetchResponse = null;
+    fetchCallCount = 0;
   });
 
   describe("API integration", () => {
@@ -56,6 +59,32 @@ describe("Stage 3: Dynamic ICE Configuration Injection", () => {
       mockFetchResponse = { data: { iceServers: [] } };
       await api.getIceServers();
       assert.strictEqual(lastFetchUrl, "/api/webrtc/ice-servers");
+    });
+
+    it("coalesces concurrent session checks but does not cache completed responses", async () => {
+      mockFetchResponse = { data: { user: { id: "user-1" } } };
+
+      const [first, second] = await Promise.all([api.me(), api.me()]);
+      assert.deepStrictEqual(first, second);
+      assert.strictEqual(fetchCallCount, 1);
+
+      await api.me();
+      assert.strictEqual(fetchCallCount, 2);
+    });
+
+    it("coalesces matching interview lists without sharing different queries", async () => {
+      mockFetchResponse = { data: { interviews: [] } };
+
+      const [first, second] = await Promise.all([
+        api.listInterviews({ page: 1, limit: 10 }),
+        api.listInterviews({ page: 1, limit: 10 }),
+      ]);
+      assert.deepStrictEqual(first, second);
+      assert.strictEqual(fetchCallCount, 1);
+
+      await api.listInterviews({ page: 2, limit: 10 });
+      assert.strictEqual(fetchCallCount, 2);
+      assert.strictEqual(lastFetchUrl, "/api/interviews?page=2&limit=10");
     });
   });
 

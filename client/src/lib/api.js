@@ -85,17 +85,36 @@ async function request(path, opts = {}) {
   }
 }
 
+let meRequest;
+const interviewsRequests = new Map();
+
 export const api = {
   register: (payload) => request("/auth/register", { method: "POST", body: payload }),
   login: (payload) => request("/auth/login", { method: "POST", body: payload }),
   logout: () => request("/auth/logout", { method: "POST" }),
-  me: () => request("/auth/me"),
+  me: () => {
+    if (!meRequest) {
+      meRequest = request("/auth/me").finally(() => {
+        meRequest = null;
+      });
+    }
+    return meRequest;
+  },
 
   createInterview: (payload) => request("/interviews", { method: "POST", body: payload }),
-  listInterviews: ({ page = 1, limit = 10, status } = {}) =>
-    request(
-      `/interviews?page=${page}&limit=${limit}${status ? `&status=${status}` : ""}`
-    ),
+  listInterviews: ({ page = 1, limit = 10, status } = {}) => {
+    const path = `/interviews?page=${page}&limit=${limit}${status ? `&status=${status}` : ""}`;
+    const existingRequest = interviewsRequests.get(path);
+    if (existingRequest) return existingRequest;
+
+    const interviewRequest = request(path).finally(() => {
+      if (interviewsRequests.get(path) === interviewRequest) {
+        interviewsRequests.delete(path);
+      }
+    });
+    interviewsRequests.set(path, interviewRequest);
+    return interviewRequest;
+  },
   getRoom: (roomCode) => request(`/interviews/room/${encodeURIComponent(roomCode)}`),
   getIceServers: (roomCode) => request(`/webrtc/ice-servers${roomCode ? `?roomCode=${encodeURIComponent(roomCode)}` : ''}`),
   submitFeedback: (id, payload) =>
