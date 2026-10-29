@@ -40,7 +40,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
       {/* Brand panel */}
       <aside
         ref={scope}
-        className="relative hidden overflow-hidden bg-[linear-gradient(145deg,#c7dbf7,#bfc7de_62%,#c59594)] text-ink-950 lg:flex lg:flex-col lg:justify-between lg:p-10"
+        className="relative hidden overflow-hidden bg-accent-600 text-night-950 lg:flex lg:flex-col lg:justify-between lg:p-10"
       >
         <div
           aria-hidden
@@ -60,7 +60,7 @@ export default function AuthLayout({ title, subtitle, alt, children }) {
         <div className="relative max-w-md">
           <div
             data-stage
-            className="overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[var(--shadow-pop)] backdrop-blur"
+            className="overflow-hidden rounded-2xl border border-ink-200 bg-surface/90 shadow-[var(--shadow-pop)] backdrop-blur"
           >
             <div className="flex items-center justify-between border-b border-ink-200/80 px-4 py-2.5 text-xs text-ink-700">
               <span className="flex items-center gap-2 font-medium">
