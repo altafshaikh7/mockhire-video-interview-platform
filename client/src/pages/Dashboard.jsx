@@ -126,7 +126,7 @@ export default function Dashboard() {
         <section className="mt-8 min-h-[13rem] sm:min-h-[10rem]" aria-label="Upcoming interview">
           {loading ? (
             <div
-              className="min-h-[13rem] rounded-2xl border border-white/80 bg-white/70 p-6 shadow-[var(--shadow-pop)] sm:min-h-[10rem] sm:p-8"
+              className="min-h-[13rem] rounded-3xl border border-ink-200 bg-surface p-6 shadow-[var(--shadow-card)] sm:min-h-[10rem] sm:p-8"
               aria-hidden="true"
             >
               <div className="skeleton h-3 w-16 rounded" />
@@ -135,19 +135,19 @@ export default function Dashboard() {
               <div className="mt-2 skeleton h-4 w-2/5 rounded" />
             </div>
           ) : nextInterview ? (
-            <div className="min-h-[13rem] rounded-2xl border border-white/80 bg-[linear-gradient(120deg,#c7dbf7,#bfc7de_70%,#c59594)] p-6 text-ink-950 shadow-[var(--shadow-pop)] sm:min-h-[10rem] sm:p-8">
+            <div className="min-h-[13rem] rounded-3xl border border-night-800 bg-night-900 p-6 text-white shadow-[var(--shadow-pop)] sm:min-h-[10rem] sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-300">
                 Up next
               </p>
               <div className="mt-3 flex flex-wrap items-end justify-between gap-5">
                 <div>
                   <h2 className="font-display text-2xl font-semibold">{nextInterview.title}</h2>
-                  <p className="mt-2 text-sm text-ink-700">
+                  <p className="mt-2 text-sm text-white/75">
                     {isInterviewer
                       ? `With ${nextInterview.candidate?.name ?? nextInterview.candidate?.email ?? "candidate"}`
                       : `With ${nextInterview.interviewer?.name ?? "your interviewer"}`}
                   </p>
-                  <p className="mt-1 text-sm text-ink-700">
+                  <p className="mt-1 text-sm text-white/75">
                     {untilLabel(nextInterview.scheduledAt)} · {formatWhen(nextInterview.scheduledAt)}
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export default function Dashboard() {
                     Enter room
                   </Button>
                 ) : (
-                  <span className="text-sm text-ink-700">Room unavailable</span>
+                  <span className="text-sm text-white/65">Room unavailable</span>
                 )}
               </div>
             </div>
