@@ -1,70 +1,60 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── MockHire design system ─────────────────────────────────────
-     Light blue, soft blue-gray, muted purple, dusty rose, and near black. */
-
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Bricolage Grotesque", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Near-black text with blue-gray and light-blue product surfaces. */
-  --color-ink-950: #010101;
-  --color-ink-900: #010101;
-  --color-ink-800: #010101;
-  --color-ink-700: #75708c;
-  --color-ink-600: #75708c;
-  --color-ink-500: #010101;
-  --color-ink-400: #75708c;
-  --color-ink-300: #bfc7de;
-  --color-ink-200: #bfc7de;
-  --color-ink-100: #bfc7de;
-  --color-ink-50: #c7dbf7;
+  --color-ink-950: #211a16;
+  --color-ink-900: #211a16;
+  --color-ink-800: #30251f;
+  --color-ink-700: #55483f;
+  --color-ink-600: #70645b;
+  --color-ink-500: #8b8178;
+  --color-ink-400: #a4988e;
+  --color-ink-300: #c4b8aa;
+  --color-ink-200: #e2d7c9;
+  --color-ink-100: #f4ebdd;
+  --color-ink-50: #fff8ee;
 
-  /* Raised product surfaces. */
   --color-surface: #ffffff;
 
-  /* Muted purple is the primary action; dusty rose is the hover accent. */
-  --color-accent-800: #75708c;
-  --color-accent-700: #75708c;
-  --color-accent-600: #75708c;
-  --color-accent-500: #c59594;
-  --color-accent-400: #c7dbf7;
-  --color-accent-300: #c7dbf7;
-  --color-accent-200: #bfc7de;
-  --color-accent-100: #bfc7de;
-  --color-accent-50: #c7dbf7;
-  --color-accent-strong: #75708c;
+  --color-accent-800: #9e2d0b;
+  --color-accent-700: #bc350d;
+  --color-accent-600: #f0440b;
+  --color-accent-500: #d83a0a;
+  --color-accent-400: #f56c42;
+  --color-accent-300: #ff9a79;
+  --color-accent-200: #ffc2ab;
+  --color-accent-100: #ffe4d8;
+  --color-accent-50: #fff1e9;
+  --color-accent-strong: #bc350d;
 
-  /* Near-black surfaces for the landing page and live room. */
-  --color-night-950: #010101;
-  --color-night-900: #010101;
-  --color-night-800: #75708c;
+  --color-night-950: #151210;
+  --color-night-900: #211a16;
+  --color-night-800: #30251f;
 
-  /* Semantic feedback stays within the requested visual palette. */
-  --color-ok-600: #75708c;
-  --color-ok-400: #c59594;
-  --color-ok-100: #bfc7de;
-  --color-ok-strong: #010101;
-  --color-warn-600: #c59594;
-  --color-warn-500: #c59594;
-  --color-warn-100: #bfc7de;
-  --color-warn-strong: #010101;
-  --color-bad-600: #75708c;
-  --color-bad-500: #c59594;
-  --color-bad-100: #bfc7de;
-  --color-bad-strong: #010101;
+  --color-ok-600: #26734a;
+  --color-ok-400: #66a77d;
+  --color-ok-100: #e1f1e5;
+  --color-ok-strong: #205b3b;
+  --color-warn-600: #98621b;
+  --color-warn-500: #c38a32;
+  --color-warn-100: #f6ecd7;
+  --color-warn-strong: #70480f;
+  --color-bad-600: #b83222;
+  --color-bad-500: #d34b37;
+  --color-bad-100: #f9e4df;
+  --color-bad-strong: #8d291d;
 
-  --color-live-500: #75708c;
+  --color-live-500: #f0440b;
 
-  --shadow-card: 0 1px 2px rgb(1 1 1 / 0.04), 0 8px 28px rgb(1 1 1 / 0.07);
-  --shadow-pop: 0 4px 12px rgb(1 1 1 / 0.08), 0 24px 64px rgb(1 1 1 / 0.16);
-  --shadow-glow: 0 0 60px rgb(197 149 148 / 0.28);
+  --shadow-card: 0 1px 2px rgb(33 26 22 / 0.04), 0 12px 32px rgb(33 26 22 / 0.06);
+  --shadow-pop: 0 8px 20px rgb(33 26 22 / 0.08), 0 28px 72px rgb(33 26 22 / 0.14);
+  --shadow-glow: 0 0 60px rgb(240 68 11 / 0.18);
 
-  /* Motion vocabulary — exponential ease-outs only */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Semantic z-scale */
   --z-sticky: 20;
   --z-backdrop: 40;
   --z-modal: 50;
@@ -72,48 +62,116 @@
 }
 
 :root {
-  --neu-bg: var(--color-ink-50);
-  --neu-text: var(--color-ink-900);
-  --neu-muted: var(--color-ink-500);
-  --neu-shadow: var(--color-ink-200);
-  --neu-light: var(--color-surface);
-  --neu-accent: var(--color-accent-600);
-
+  --neu-bg: #fff8ee;
+  --neu-text: #211a16;
+  --neu-muted: #8b8178;
+  --neu-shadow: #e2d7c9;
+  --neu-light: #ffffff;
+  --neu-accent: #f0440b;
   color-scheme: light;
 }
 
-/* The alternate theme stays pastel so system/user dark preferences never
-   turn the whole product into a near-black canvas. */
 :root[data-theme="dark"] {
-  --color-ink-50: #bfc7de;
-  --color-ink-100: #c7dbf7;
-  --color-ink-200: #c7dbf7;
-  --color-surface: #ffffff;
-  --color-accent-50: #bfc7de;
-  --color-accent-100: #c7dbf7;
-  --color-accent-strong: #75708c;
-  --color-ok-100: #c7dbf7;
-  --color-warn-100: #c7dbf7;
-  --color-bad-100: #c7dbf7;
+  --color-ink-950: #fff8ee;
+  --color-ink-900: #fff8ee;
+  --color-ink-800: #f4ebdd;
+  --color-ink-700: #ded0c4;
+  --color-ink-600: #c9b9ac;
+  --color-ink-500: #bdb0a5;
+  --color-ink-400: #9b8b7f;
+  --color-ink-300: #725d50;
+  --color-ink-200: #49372d;
+  --color-ink-100: #30251f;
+  --color-ink-50: #151210;
 
-  color-scheme: light;
+  --color-surface: #211a16;
+
+  --color-accent-800: #ffb39a;
+  --color-accent-700: #ff9878;
+  --color-accent-600: #ff5728;
+  --color-accent-500: #ff734c;
+  --color-accent-400: #ff9878;
+  --color-accent-300: #ffb39a;
+  --color-accent-200: #693b2c;
+  --color-accent-100: #42271e;
+  --color-accent-50: #302019;
+  --color-accent-strong: #ff9878;
+
+  --color-ok-600: #91d4a3;
+  --color-ok-400: #75be8b;
+  --color-ok-100: #20372a;
+  --color-ok-strong: #a6ddb4;
+  --color-warn-600: #e8bd70;
+  --color-warn-500: #d9a64e;
+  --color-warn-100: #3c3020;
+  --color-warn-strong: #f0cb83;
+  --color-bad-600: #ff9784;
+  --color-bad-500: #ed7967;
+  --color-bad-100: #40231f;
+  --color-bad-strong: #ffab9b;
+
+  --color-live-500: #ff7049;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.16), 0 12px 32px rgb(0 0 0 / 0.18);
+  --shadow-pop: 0 8px 20px rgb(0 0 0 / 0.24), 0 28px 72px rgb(0 0 0 / 0.32);
+  --shadow-glow: 0 0 60px rgb(255 87 40 / 0.16);
+
+  --neu-bg: #211a16;
+  --neu-text: #fff8ee;
+  --neu-muted: #bdb0a5;
+  --neu-shadow: #49372d;
+  --neu-light: #30251f;
+  --neu-accent: #ff5728;
+  color-scheme: dark;
 }
 
-/* OS dark preference uses the same pastel alternate surfaces. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --color-ink-50: #bfc7de;
-    --color-ink-100: #c7dbf7;
-    --color-ink-200: #c7dbf7;
-    --color-surface: #ffffff;
-    --color-accent-50: #bfc7de;
-    --color-accent-100: #c7dbf7;
-    --color-accent-strong: #75708c;
-    --color-ok-100: #c7dbf7;
-    --color-warn-100: #c7dbf7;
-    --color-bad-100: #c7dbf7;
-
-    color-scheme: light;
+    --color-ink-950: #fff8ee;
+    --color-ink-900: #fff8ee;
+    --color-ink-800: #f4ebdd;
+    --color-ink-700: #ded0c4;
+    --color-ink-600: #c9b9ac;
+    --color-ink-500: #bdb0a5;
+    --color-ink-400: #9b8b7f;
+    --color-ink-300: #725d50;
+    --color-ink-200: #49372d;
+    --color-ink-100: #30251f;
+    --color-ink-50: #151210;
+    --color-surface: #211a16;
+    --color-accent-800: #ffb39a;
+    --color-accent-700: #ff9878;
+    --color-accent-600: #ff5728;
+    --color-accent-500: #ff734c;
+    --color-accent-400: #ff9878;
+    --color-accent-300: #ffb39a;
+    --color-accent-200: #693b2c;
+    --color-accent-100: #42271e;
+    --color-accent-50: #302019;
+    --color-accent-strong: #ff9878;
+    --color-ok-600: #91d4a3;
+    --color-ok-400: #75be8b;
+    --color-ok-100: #20372a;
+    --color-ok-strong: #a6ddb4;
+    --color-warn-600: #e8bd70;
+    --color-warn-500: #d9a64e;
+    --color-warn-100: #3c3020;
+    --color-warn-strong: #f0cb83;
+    --color-bad-600: #ff9784;
+    --color-bad-500: #ed7967;
+    --color-bad-100: #40231f;
+    --color-bad-strong: #ffab9b;
+    --color-live-500: #ff7049;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.16), 0 12px 32px rgb(0 0 0 / 0.18);
+    --shadow-pop: 0 8px 20px rgb(0 0 0 / 0.24), 0 28px 72px rgb(0 0 0 / 0.32);
+    --shadow-glow: 0 0 60px rgb(255 87 40 / 0.16);
+    --neu-bg: #211a16;
+    --neu-text: #fff8ee;
+    --neu-muted: #bdb0a5;
+    --neu-shadow: #49372d;
+    --neu-light: #30251f;
+    --neu-accent: #ff5728;
+    color-scheme: dark;
   }
 }
 
@@ -136,9 +194,31 @@ body {
 
 .app-canvas {
   background-color: var(--color-ink-50);
-  background-image:
-    radial-gradient(ellipse at 82% 0%, rgb(197 149 148 / 0.18), transparent 38rem),
-    linear-gradient(135deg, var(--color-ink-50), var(--color-ink-100) 85%);
+  background-image: radial-gradient(ellipse at 86% 0%, rgb(240 68 11 / 0.06), transparent 36rem);
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled),
+a {
+  transition-timing-function: var(--ease-out-quart);
+}
+
+input,
+textarea,
+select {
+  color-scheme: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
 }
 
 [data-controlbar] {
@@ -156,13 +236,10 @@ body {
 }
 
 ::selection {
-  background: var(--color-accent-100);
+  color: var(--color-ink-950);
+  background: var(--color-accent-200);
 }
 
-/* In @layer base so Tailwind's focus utilities (focus:outline-none,
-   focus-visible:outline-*) can override it — an unlayered rule would beat
-   every layered utility and force one ring on everything. Elements that
-   opt out (the code pad) or ask for a different ring now win as intended. */
 @layer base {
   :focus-visible {
     outline: 2px solid var(--color-accent-600);
@@ -170,19 +247,21 @@ body {
   }
 }
 
-/* Display type is balanced; long prose avoids orphans */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-wrap: balance;
 }
+
 p {
   text-wrap: pretty;
 }
 
-/* Skeleton shimmer for product loading states */
 @keyframes shimmer {
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
 }
+
 .skeleton {
   border-radius: 0.5rem;
   background: linear-gradient(
@@ -195,19 +274,20 @@ p {
   animation: shimmer 1.6s linear infinite;
 }
 
-/* Landing grain — one layer of texture over the drench */
 .grain::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (prefers-reduced-motion: reduce) {
   .skeleton { animation: none; }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
