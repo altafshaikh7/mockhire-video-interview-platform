@@ -9,7 +9,7 @@ import { effectiveTheme, toggleTheme } from "../lib/theme";
 export function Logo({ dark = false }) {
   return (
     <Link to="/" className="flex items-center gap-2 select-none">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent-600 shadow-[0_2px_8px_rgba(117,112,140,0.35)]">
+      <span className="grid h-8 w-8 place-items-center rounded-xl bg-accent-600 shadow-[0_2px_8px_rgba(240,68,11,0.28)]">
         <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 fill-white" aria-hidden>
           <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h7A2.5 2.5 0 0 1 15 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 3 16.5v-9Z" />
           <path d="M16.5 10.1l3.2-2.2a.8.8 0 0 1 1.3.66v6.88a.8.8 0 0 1-1.3.66l-3.2-2.2v-3.8Z" opacity=".55" />
@@ -30,11 +30,11 @@ export const Button = forwardRef(function Button(
 ) {
   const styles = {
     primary:
-      "bg-accent-600 text-white shadow-sm shadow-accent-700/20 hover:bg-accent-500 hover:text-ink-950 hover:shadow-md active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:shadow-none disabled:active:scale-100",
+      "bg-accent-600 text-ink-950 shadow-sm shadow-accent-700/20 hover:bg-accent-500 hover:shadow-md active:scale-[0.98] disabled:bg-ink-200 disabled:text-ink-400 disabled:shadow-none disabled:active:scale-100",
     secondary:
       "bg-surface text-ink-900 shadow-sm ring-1 ring-ink-200 hover:bg-ink-100 hover:shadow-md active:scale-[0.98] disabled:text-ink-400",
     danger:
-      "bg-bad-600 text-white shadow-sm hover:bg-bad-500 hover:text-ink-950 active:scale-[0.98] disabled:bg-ink-200",
+      "bg-bad-600 text-ink-950 shadow-sm hover:bg-bad-500 active:scale-[0.98] disabled:bg-ink-200",
     ghost: "text-ink-700 hover:bg-ink-100 disabled:text-ink-400",
     /* dark-register variants (landing, room) */
     light:
@@ -44,7 +44,7 @@ export const Button = forwardRef(function Button(
   return (
     <button
       ref={ref}
-      className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-[background-color,color,transform,filter,box-shadow] duration-200 ease-[var(--ease-out-quart)] disabled:cursor-not-allowed ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-[background-color,color,transform,filter,box-shadow] duration-200 ease-[var(--ease-out-quart)] disabled:cursor-not-allowed ${styles[variant]} ${className}`}
       {...props}
     />
   );
@@ -158,7 +158,7 @@ export function ThemeToggle() {
       aria-label="Dark theme"
       aria-pressed={dark}
       title={dark ? "Switch to light" : "Switch to dark"}
-      className="grid h-9 w-9 place-items-center rounded-lg text-ink-500 transition-colors duration-150 hover:bg-ink-100 hover:text-ink-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600"
+      className="grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-surface text-ink-600 shadow-sm transition-colors duration-150 hover:border-ink-300 hover:bg-ink-100 hover:text-ink-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600"
     >
       {dark ? (
         <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
