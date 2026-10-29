@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { magnetize } from "../lib/motion";
-import { Logo, Button } from "../components/ui";
+import { Logo, Button, ThemeToggle } from "../components/ui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,7 +72,7 @@ export default function Landing() {
   );
 
   return (
-    <div ref={scope} className="relative min-h-screen overflow-x-clip bg-[linear-gradient(135deg,#c7dbf7,#bfc7de_58%,#c59594)] text-ink-950">
+    <div ref={scope} className="app-canvas relative min-h-screen overflow-x-clip text-ink-950">
       {/* ambient brand glow behind the hero */}
       <div
         aria-hidden
@@ -83,6 +83,7 @@ export default function Landing() {
       <header className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <Logo />
         <nav className="flex items-center gap-2">
+          <ThemeToggle />
           <Link to="/login">
             <Button variant="ghost">Sign in</Button>
           </Link>
@@ -93,8 +94,12 @@ export default function Landing() {
       </header>
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative mx-auto max-w-6xl px-6 pt-14 sm:pt-24">
-        <h1 className="max-w-4xl font-display text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+      <section className="relative mx-auto max-w-6xl px-6 pt-12 sm:pt-20">
+        <p className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent-700">
+          <span className="h-2 w-2 rounded-full bg-accent-600" aria-hidden />
+          A better room for better interviews
+        </p>
+        <h1 className="max-w-5xl font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[0.94] tracking-[-0.055em]">
           {/* each word wrapped for the rise animation; overflow clipped per line */}
           <span className="block overflow-hidden pb-1">
             <span data-word className="inline-block">Interviews</span>{" "}
@@ -115,12 +120,12 @@ export default function Landing() {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Link data-hero-cta to="/register">
-              <Button ref={heroCtaRef} variant="light" className="px-6 py-3 text-base">
+              <Button ref={heroCtaRef} className="px-7 py-3.5 text-base">
                 Start for free
               </Button>
             </Link>
             <Link data-hero-cta to="/login">
-              <Button variant="ghost-dark" className="px-6 py-3 text-base">
+              <Button variant="ghost" className="px-6 py-3.5 text-base">
                 I have an account →
               </Button>
             </Link>
@@ -136,10 +141,10 @@ export default function Landing() {
           />
           <div
             data-panel
-            className="relative overflow-hidden rounded-2xl border border-white/80 bg-white/75 shadow-[var(--shadow-pop)] backdrop-blur"
+            className="relative overflow-hidden rounded-3xl border border-ink-200 bg-surface shadow-[var(--shadow-pop)]"
           >
             {/* window chrome */}
-            <div className="flex items-center justify-between border-b border-ink-200/80 px-5 py-3.5">
+            <div className="flex items-center justify-between border-b border-ink-200 px-5 py-3.5">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
                 <span className="h-2.5 w-2.5 rounded-full bg-ink-200" />
@@ -230,7 +235,7 @@ export default function Landing() {
         </Link>
       </section>
 
-      <footer className="relative border-t border-white/10 bg-night-950 py-8">
+      <footer className="relative border-t border-night-800 bg-night-950 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 text-sm text-white/60 sm:flex-row">
           <Logo dark />
           <p>Built by Altaf Shaikh · MERN Stack + WebRTC</p>
